@@ -70,11 +70,12 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 %default-font {
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
+  color: #848484;
 }
 
 %header-font {
   font-family: "Dosis";
-  font-weight: bold;
+  color: #444444;
 }
 
 %code-font {
