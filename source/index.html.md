@@ -21,44 +21,23 @@ The SekurePay API is based around keeping it as simple as possible while keeping
 
 # Authentication
 
-Authenticate your account when using the API by including your secret API key in the request.Authentication is made over [HTTPS](http://en.wikipedia.org/wiki/HTTPS) and we do not support any requests over plain HTTP. Calls made over plain HTTP will fail.
-Authentication is 
-Once you register with Vogogo, you will be able to manage your API key through your merchant account. 
+Authenticate your account when using the API by including your secret API key in the request. Authentication is made over [HTTPS](http://en.wikipedia.org/wiki/HTTPS) and we do not support any requests over plain HTTP. Calls made over plain HTTP will fail.
 
-Each endpoint is protected and authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).Your api key must be kept secure, which you may change at any time, by refreshing it within your merchant account settings.
+Each endpoint is protected and authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication). Provide your API key as the basic auth username. You do not need to provide a password.
 
-> To authorize, use this code:
+Your api key must be kept secure, which you may change at any time, by refreshing it within your merchant account settings. You can see your account’s API keys, and roll them if necessary, in your [account API settings](https://sekurepay.com/account/api_settings).
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
 # Orders
 
+The orders API allows you to create, and view a single order.
+
 ## Create an Order
 
+This API allows you to create a new order.
+
 ```shell
-curl -X "POST" "http://sekurepay.com/api/v1/orders" \
+curl -X "POST" "https://sekurepay.com/api/v1/orders" \
 	-H "Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg==" \
 	-H "Content-Type: application/json" \
 	-d "{
@@ -105,7 +84,7 @@ This endpoint retrieves all kittens.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://sekurepay.com/api/v1/orders`
 
 ### Query Parameters
 
@@ -119,6 +98,8 @@ Remember — a happy kitten is an authenticated kitten!
 </aside>
 
 ## Retrieve an Order
+
+This API allows you retrieve and view a specific order.
 
 ```shell
 curl -X "GET" "http://sekurepay.com/api/v1/orders/merchant_generated_order_id" \
