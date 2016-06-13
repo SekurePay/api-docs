@@ -3,8 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -64,27 +62,15 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Orders
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Create an Order
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl -X "POST" "http://localhost:3000/api/v1/orders" \
+	-H "Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg==" \
+	-H "Content-Type: application/json" \
+	-d "{\"id\":\"merchant_generated_order_id\",\"sub_total_cents\":10000,\"shipping_amount_cents\":200,\"total_cents\":12200,\"currency\":\"USD\",\"items\":[{\"description\":\"51\\\" TV\",\"amount_cents\":\"10000\"}],\"taxes\":[{\"description\":\"GST\",\"amount_cents\":\"500\"}]}"
 ```
 
 ```javascript
