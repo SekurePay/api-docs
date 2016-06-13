@@ -5,8 +5,8 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://sekurepay.com/users/sign_up'>Sign Up for SekurePay</a>
+  - <a href='https://sekurepay.com/merchants/docs'>SekurePay Documentation</a>
 
 includes:
   - errors
@@ -16,27 +16,18 @@ search: true
 
 # Introduction
 
-Welcome to the SekurePay API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The SekurePay API is based around keeping it as simple as possible while keeping the highest level of security at the forefront of all that we do. The API is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) and is designed to have resource oriented URLs and uses HTTP response codes to indicate errors. [JSON](http://json.org) is returned by all API responses, with all connections to SekurePay's API is done through HTTPS over HSTS. 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
+Authenticate your account when using the API by including your secret API key in the request.Authentication is made over [HTTPS](http://en.wikipedia.org/wiki/HTTPS) and we do not support any requests over plain HTTP. Calls made over plain HTTP will fail.
+Authentication is 
+Once you register with Vogogo, you will be able to manage your API key through your merchant account. 
+
+Each endpoint is protected and authenticated using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).Your api key must be kept secure, which you may change at any time, by refreshing it within your merchant account settings.
+
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -67,18 +58,27 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ## Create an Order
 
 ```shell
-curl -X "POST" "http://localhost:3000/api/v1/orders" \
+curl -X "POST" "http://sekurepay.com/api/v1/orders" \
 	-H "Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg==" \
 	-H "Content-Type: application/json" \
-	-d "{\"id\":\"merchant_generated_order_id\",\"sub_total_cents\":10000,\"shipping_amount_cents\":200,\"total_cents\":12200,\"currency\":\"USD\",\"items\":[{\"description\":\"51\\\" TV\",\"amount_cents\":\"10000\"}],\"taxes\":[{\"description\":\"GST\",\"amount_cents\":\"500\"}]}"
+	-d "{
+		"id":"MERCHANT_GENERATED_ORDER_ID",
+		"sub_total_cents": 10000,
+		"shipping_amount_cents": 200,
+		"total_cents": 12200,
+		"currency": "USD",
+		"items":
+		[{
+			"description": "51 inch TV",
+			"amount_cents": "10000"
+		}],
+		"taxes":
+		[{
+			"description": "GST",
+			"amount_cents": "500"
+		}]}"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
 
 > The above command returns JSON structured like this:
 
@@ -118,32 +118,12 @@ available | true | If set to false, the result will include kittens that have al
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Retrieve an Order
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+curl -X "GET" "http://sekurepay.com/api/v1/orders/merchant_generated_order_id" \
+	-H "Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg==" \```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
