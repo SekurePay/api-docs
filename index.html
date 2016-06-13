@@ -123,42 +123,20 @@
 
 <h1 id="authentication">Authentication</h1>
 
-<p>Authenticate your account when using the API by including your secret API key in the request.Authentication is made over <a href="http://en.wikipedia.org/wiki/HTTPS">HTTPS</a> and we do not support any requests over plain HTTP. Calls made over plain HTTP will fail.
-Authentication is 
-Once you register with Vogogo, you will be able to manage your API key through your merchant account. </p>
+<p>Authenticate your account when using the API by including your secret API key in the request. Authentication is made over <a href="http://en.wikipedia.org/wiki/HTTPS">HTTPS</a> and we do not support any requests over plain HTTP. Calls made over plain HTTP will fail.</p>
 
-<p>Each endpoint is protected and authenticated using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a>.Your api key must be kept secure, which you may change at any time, by refreshing it within your merchant account settings.</p>
+<p>Each endpoint is protected and authenticated using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a>. Provide your API key as the basic auth username. You do not need to provide a password.</p>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+<p>Your api key must be kept secure, which you may change at any time, by refreshing it within your merchant account settings. You can see your account’s API keys, and roll them if necessary, in your <a href="https://sekurepay.com/account/api_settings">account API settings</a>.</p>
 
 <h1 id="orders">Orders</h1>
 
+<p>The orders API allows you to create, and view a single order.</p>
+
 <h2 id="create-an-order">Create an Order</h2>
-<pre class="highlight shell"><code>curl -X <span class="s2">"POST"</span> <span class="s2">"http://sekurepay.com/api/v1/orders"</span> <span class="se">\</span>
+
+<p>This API allows you to create a new order.</p>
+<pre class="highlight shell"><code>curl -X <span class="s2">"POST"</span> <span class="s2">"https://sekurepay.com/api/v1/orders"</span> <span class="se">\</span>
     -H <span class="s2">"Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg=="</span> <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s2">"{
@@ -204,7 +182,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">POST https://sekurepay.com/api/v1/orders</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -232,6 +210,8 @@ Remember — a happy kitten is an authenticated kitten!
 </aside>
 
 <h2 id="retrieve-an-order">Retrieve an Order</h2>
+
+<p>This API allows you retrieve and view a specific order.</p>
 <pre class="highlight shell"><code>curl -X <span class="s2">"GET"</span> <span class="s2">"http://sekurepay.com/api/v1/orders/merchant_generated_order_id"</span> <span class="se">\</span>
     -H <span class="s2">"Authorization: Basic MDA2YmVhMWUtYjZhOS00OTNjLWE2NGEtMGEyMmViMzA2MGE4OioqKioqIEhpZGRlbiBjcmVkZW50aWFscyAqKioqKg=="</span> <span class="se">\`</span><span class="sb">``</span>
 
